@@ -4,17 +4,28 @@
 
 ### Dockerビルド
 
-- git clone https://github.com/kayamo0120-code/contact-form-app.git
+- git clone https://github.com/kayame0120-code/contact-form-app.git
+- cd contact-form-app
 - docker-compose up -d --build
 
 ### Laravel環境構築
 
 - docker-compose exec php bash
 - composer install
-- cp .env.example .env 、環境変数を適宜変更
+- cp .env.example .env 
+- .envの以下の項目を変更する
+  - DB_HOST=mysql
+  - DB_DATABASE=laravel_db
+  - DB_USERNAME=laravel_user
+  - DB_PASSWORD=laravel_pass
 - php artisan key:generate
 - php artisan migrate
 - php artisan db:seed
+
+### 権限設定（必要な場合）
+- sudo chown -R $USER:$USER src
+- chown -R www-data:www-data storage bootstrap/cache
+- chmod -R 775 storage bootstrap/cache
 
 ## 開発環境
 
