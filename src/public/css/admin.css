@@ -1,0 +1,254 @@
+/* ===== Admin全体 ===== */
+.admin-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.content__logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.content__logo h2 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--color-main);
+    letter-spacing: 0.05em;
+    font-weight: normal;
+}
+
+/* ===== 検索エリア ===== */
+.admin__controls {
+    margin-bottom: 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.search form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.search input[type="text"],
+.search input[type="date"],
+.search select {
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    font-size: 14px;
+    color: var(--color-text);
+    background-color: var(--color-input-bg);
+}
+
+.search input[type="text"] {
+    width: 280px;
+}
+
+.search input[type="date"] {
+    color: var(--color-main);
+}
+
+.search select {
+    color: var(--color-main);
+}
+
+/* ===== エクスポート＋ページネーション ===== */
+.admin__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.btn-export {
+    background-color: #e8e4e0;
+    color: var(--color-main);
+    border: none;
+}
+
+/* ===== ページネーション ===== */
+.pagination {
+    display: flex;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.pagination .page-item .page-link {
+    padding: 6px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    color: var(--color-main);
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    background-color: var(--color-white);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--color-main);
+    color: var(--color-white);
+    border-color: var(--color-main);
+}
+
+.pagination .page-item.disabled .page-link {
+    color: var(--color-text-light);
+    pointer-events: none;
+}
+
+/* ===== テーブル ===== */
+.admin__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin__table thead tr {
+    background-color: var(--color-main);
+    color: var(--color-white);
+}
+
+.admin__table th,
+.admin__table td {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.admin__table tbody tr {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.admin__table tbody tr:hover {
+    background-color: #f5f0eb;
+}
+
+.admin__table tbody td {
+    color: var(--color-main);
+}
+
+/* ===== ボタン ===== */
+.btn-primary {
+    background-color: var(--color-main);
+    color: var(--color-white);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-main-dark);
+}
+
+.btn-reset {
+    background-color: #c9b9a8;
+    color: var(--color-white);
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.btn-detail {
+    background-color: var(--color-input-bg);
+    color: #c9b9a8;
+    border: 1px solid #c9b9a8;
+    padding: 4px 12px;
+    font-size: 13px;
+}
+
+.btn-detail:hover {
+    background-color: var(--color-main);
+    color: var(--color-white);
+}
+
+.btn-danger {
+    background-color: #8B3A3A;
+    color: var(--color-white);
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #7a2d20;
+}
+
+/* ===== logout form ===== */
+.logout {
+    display: inline;
+}
+
+/* ===== モーダル ===== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__content {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    width: 600px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal__body {
+    padding: 20px 40px;
+}
+
+.modal__content p {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    padding: 4px 0;
+    color: var(--color-main);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.modal__content p strong {
+    color: var(--color-main);
+    font-weight: bold;
+}
+
+.modal__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--color-white);
+    color: var(--color-main);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__close:hover {
+    background-color: var(--color-bg);
+}
+
+.delete__button {
+    text-align: center;
+    margin-bottom: 20px;
+}

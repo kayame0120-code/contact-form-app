@@ -31,7 +31,35 @@
 
 ## ER図
 
-<!-- ER図の画像をここに貼る -->
+```mermaid
+erDiagram
+    users {
+        bigint id PK
+        string name
+        string email
+        string password
+        timestamps timestamps
+    }
+    categories {
+        bigint id PK
+        string content
+        timestamps timestamps
+    }
+    contacts {
+        bigint id PK
+        bigint category_id FK
+        string first_name
+        string last_name
+        int gender
+        string email
+        string tel
+        string address
+        string building
+        text detail
+        timestamps timestamps
+    }
+    categories ||--o{ contacts : "has many"
+```
 
 ## URL
 

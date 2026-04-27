@@ -13,7 +13,7 @@ class ContactRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,51 @@ class ContactRequest extends FormRequest
     {
         return [
             //
+            'category_id' => 'required|exists:categories,id',
+            'first_name' => 'required|string|max:8',
+            'last_name' => 'required|string|max:8',
+            'gender' => 'required|in:1,2,3',
+            'email' => 'required|email|max:255',
+            'tel1' => 'required|numeric|digits_between:1,5',
+            'tel2' => 'required|numeric|digits_between:1,5',
+            'tel3' => 'required|numeric|digits_between:1,5',
+            'address' => 'required|string|max:255',
+            'building' => 'nullable|string|max:255',
+            'detail' => 'required|string|max:120',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'category_id.required' => 'お問い合わせの種類を選択してください',
+            'category_id.exists' => '選択されたお問い合わせの種類は無効です。',
+            'first_name.required' => '姓を入力してください',
+            'first_name.string' => '姓は文字列でなければなりません。',
+            'first_name.max' => '姓は8文字以内で入力してください。',
+            'last_name.required' => '名を入力してください',
+            'last_name.string' => '名は文字列でなければなりません。',
+            'last_name.max' => '名は8文字以内で入力してください。',
+            'gender.required' => '性別を選択してください',
+            'gender.in' => '選択された性別は無効です。',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスはメール形式で入力してください。',
+            'email.max' => 'メールアドレスは255文字以内で入力してください。',
+            'tel1.required' => '電話番号を入力してください',
+            'tel1.numeric' => '電話番号は半角英数字で入力してください',
+            'tel1.digits_between' => '電話番号は5桁まで数字で入力してください',
+            'tel2.required' => '電話番号を入力してください',
+            'tel2.numeric' => '電話番号は半角英数字で入力してください',
+            'tel2.digits_between' => '電話番号は5桁まで数字で入力してください',
+            'tel3.required' => '電話番号を入力してください',
+            'tel3.numeric' => '電話番号は半角英数字で入力してください',
+            'tel3.digits_between' => '電話番号は5桁まで数字で入力してください',
+            'address.required' => '住所を入力してください',
+            'address.string' => '住所は文字列でなければなりません。',
+            'address.max' => '住所は255文字以内で入力してください。',
+            'building.max' => '建物名は255文字以内で入力してください。',
+            'detail.required' => 'お問い合わせ内容を入力してください。',
+            'detail.string' => 'お問い合わせ内容は文字列でなければなりません。',
+            'detail.max' => 'お問い合わせ内容は120文字以内で入力してください。',
         ];
     }
 }

@@ -1,0 +1,91 @@
+/* ===== 認証画面共通 ===== */
+body {
+    background-color: var(--color-bg);
+}
+
+.auth-form__content {
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.auth-form__heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-form__heading h2 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    color: var(--color-main);
+    font-weight: normal;
+    letter-spacing: 0.1em;
+}
+
+/* ===== カード ===== */
+.auth-form__group {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: 48px 60px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== フォームグループ ===== */
+.auth__form-group {
+    margin-bottom: 28px;
+}
+
+.auth__form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-main);
+    margin-bottom: 8px;
+}
+
+.auth__form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.auth__form-group input:focus {
+    border-color: var(--color-main);
+}
+
+/* エラー */
+.form__error {
+    margin-top: 4px;
+}
+
+.auth-form__error-message {
+    color: var(--color-error);
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* ===== 送信ボタン ===== */
+.auth__form-button {
+    text-align: center;
+    margin-top: 36px;
+}
+
+.auth__form-button button {
+    padding: 12px 64px;
+    background-color: var(--color-main);
+    color: var(--color-white);
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.auth__form-button button:hover {
+    background-color: var(--color-main-dark);
+}
