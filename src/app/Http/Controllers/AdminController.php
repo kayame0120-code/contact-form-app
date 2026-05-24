@@ -25,7 +25,8 @@ class AdminController extends Controller
         ->paginate(7);
 
     $categories = Category::all();
-    return view('admin.index', compact('contacts', 'categories'));
+    $search = $request->all();
+    return view('admin.index', compact('contacts', 'categories', 'search'));
     }
 
     public function reset()

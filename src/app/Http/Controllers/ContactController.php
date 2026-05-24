@@ -23,6 +23,10 @@ class ContactController extends Controller
         $categories = Category::all();
         return view('contact.confirm', compact('contact', 'categories'));
     }
+    public function back(Request $request)
+    {
+    return redirect('/')->withInput();
+    }
     public function store(Request $request)
     {   
         $contact = $request->except(['_token']);

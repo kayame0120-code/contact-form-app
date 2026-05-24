@@ -23,7 +23,7 @@
                         <p class="contact-form__error-message">{{ $message }}</p>
                         @enderror
                         @error('first_name')
-                        <p class="contact-form__error-message">{{ $message }}</p>
+                        rip class="contact-form__error-message">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>

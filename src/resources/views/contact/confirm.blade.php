@@ -73,7 +73,17 @@
             <input type="hidden" name="detail" value="{{ $contact['detail'] }}" >
             <button type="submit" class="btn btn-primary">送信</button>
         </form>
-        <form action="/" method="GET">
+        <form action="/back" method="POST">
+            @csrf
+            <input type="hidden" name="last_name" v="{{ $contact['last_name'] }}">
+            <input type="hidden" name="first_name" value="{{ $contact['first_name'] }}">
+            <input type="hidden" name="gender" value="{{ $contact['gender'] }}">
+            <input type="hidden" name="email" value="{{ $contact['email'] }}" >
+            <input type="hidden" name="tel" value="{{ $contact['tel'] }}" >
+            <input type="hidden" name="address" value="{{ $contact['address'] }}" >
+            <input type="hidden" name="building" value="{{ $contact['building'] }}" >
+            <input type="hidden" name="category_id" value="{{ $contact['category_id'] }}" >
+            <input type="hidden" name="detail" value="{{ $contact['detail'] }}" >
             <button type="submit" class="btn btn-secondary">修正</button>
         </form>
     </div>
