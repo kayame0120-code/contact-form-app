@@ -38,7 +38,7 @@
             <a href="/admin" class="btn btn-reset">リセット</a>
         </div>
         <div class="admin__actions">
-            <form action="/export" method="POST">
+            <form action="{{ '/export?' . http_build_query(request()->query()) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-export">エクスポート</button>
             </form>
