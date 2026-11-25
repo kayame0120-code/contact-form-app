@@ -27,11 +27,11 @@ class Contact extends Model
     public function scopeKeywordSearch($query, $keyword)
     {
         if (!empty($keyword)) {
-             $query->where(function($q) use ($keyword) {
-                 $q->where('first_name', 'like', "%{$keyword}%")
-                   ->orWhere('last_name', 'like', "%{$keyword}%")
-                   ->orWhereRaw("CONCAT(last_name, ' ', first_name) like ?", ['%' . $keyword . '%'])
-                   ->orWhere('email', 'like', "%{$keyword}%");
+            $query->where(function ($q) use ($keyword) {
+                $q->where('first_name', 'like', "%{$keyword}%")
+                  ->orWhere('last_name', 'like', "%{$keyword}%")
+                  ->orWhereRaw("CONCAT(last_name, ' ', first_name) like ?", ['%' . $keyword . '%'])
+                  ->orWhere('email', 'like', "%{$keyword}%");
             });
         }
         return $query;
@@ -52,7 +52,7 @@ class Contact extends Model
     }
     public function scopeDateSearch($query, $date)
     {
-        if (!empty($date)) {    
+        if (!empty($date)) {
             $query->whereDate('created_at', $date);
         }
         return $query;

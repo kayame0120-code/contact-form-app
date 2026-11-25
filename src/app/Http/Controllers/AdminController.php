@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Category;
-
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
@@ -17,25 +17,25 @@ class AdminController extends Controller
     }
     public function search(Request $request)
     {
-    $contacts = Contact::query()
-        ->KeywordSearch($request->keyword)
-        ->GenderSearch($request->gender)
-        ->CategorySearch($request->category_id)
-        ->DateSearch($request->date)
-        ->paginate(7);
+        $contacts = Contact::query()
+            ->KeywordSearch($request->keyword)
+            ->GenderSearch($request->gender)
+            ->CategorySearch($request->category_id)
+            ->DateSearch($request->date)
+            ->paginate(7);
 
-    $categories = Category::all();
-    $search = $request->all();
-    return view('admin.index', compact('contacts', 'categories', 'search'));
+        $categories = Category::all();
+        $search = $request->all();
+        return view('admin.index', compact('contacts', 'categories', 'search'));
     }
 
     public function reset()
     {
         return redirect('/admin');
     }
-    public function delete(Request $request)            
+    public function delete(Request $request)
     {
-        Contact::find($request->id)->delete();              
+        Contact::find($request->id)->delete();
         return redirect('/admin');
     }
     public function export(Request $request)
@@ -47,15 +47,39 @@ class AdminController extends Controller
             ->DateSearch($request->date)
             ->get();
 
-        $genders = [1 => '男性', 2 => '女性', 3 => 'その他'];
-        
-        $csv = "お名前,性別,メールアドレス,お問い合わせ内容\n";
-        foreach ($contacts as $contact) {
-            $csv .= $contact->last_name . ' ' . $contact->first_name . ',' . $genders[$contact->gender] . ',' . $contact->email . ',' . $contact->detail . "\n";
-        }
+        $csvHeader = [
+            'id', 'category_id', 'first_name', 'last_name',
+            'gender', 'email', 'tel', 'address',
+            'building', 'detail', 'created_at', 'updated_at',
+        ];
 
-         return response($csv, 200)
-            ->header('Content-Type', 'text/csv')
-            ->header('Content-Disposition', 'attachment; filename="contacts.csv"');
+        $response = new StreamedResponse(function () use ($csvHeader, $contacts) {
+            $createCsvFile = fopen('php://output', 'w');
+
+            mb_convert_variables('SJIS-win', 'UTF-8', $csvHeader);
+            fputcsv($createCsvFile, $csvHeader);
+
+            foreach ($contacts as $contact) {
+                $row = $contact->toArray();
+
+                $row['created_at'] = \Carbon\Carbon::parse($row['created_at'])
+                    ->setTimezone('Asia/Tokyo')
+                    ->format('Y/m/d H:i:s');
+
+                $row['updated_at'] = \Carbon\Carbon::parse($row['updated_at'])
+                    ->setTimezone('Asia/Tokyo')
+                    ->format('Y/m/d H:i:s');
+
+                mb_convert_variables('SJIS-win', 'UTF-8', $row);
+                fputcsv($createCsvFile, $row);
+            }
+
+            fclose($createCsvFile);
+        }, 200, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="contacts.csv"',
+        ]);
+
+        return $response;
     }
 }

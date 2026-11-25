@@ -13,7 +13,7 @@ class ContactController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('contact.index', compact( 'categories'));
+        return view('contact.index', compact('categories'));
     }
     public function confirm(ContactRequest $request)
     {
@@ -25,10 +25,10 @@ class ContactController extends Controller
     }
     public function back(Request $request)
     {
-    return redirect('/')->withInput();
+        return redirect('/')->withInput();
     }
     public function store(Request $request)
-    {   
+    {
         $contact = $request->except(['_token']);
         Contact::create($contact);
         return view('contact.thanks');
