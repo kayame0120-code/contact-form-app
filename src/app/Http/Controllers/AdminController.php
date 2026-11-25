@@ -7,7 +7,6 @@ use App\Models\Contact;
 use App\Models\Category;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-
 class AdminController extends Controller
 {
     public function index()
@@ -18,25 +17,25 @@ class AdminController extends Controller
     }
     public function search(Request $request)
     {
-    $contacts = Contact::query()
-        ->KeywordSearch($request->keyword)
-        ->GenderSearch($request->gender)
-        ->CategorySearch($request->category_id)
-        ->DateSearch($request->date)
-        ->paginate(7);
+        $contacts = Contact::query()
+            ->KeywordSearch($request->keyword)
+            ->GenderSearch($request->gender)
+            ->CategorySearch($request->category_id)
+            ->DateSearch($request->date)
+            ->paginate(7);
 
-    $categories = Category::all();
-    $search = $request->all();
-    return view('admin.index', compact('contacts', 'categories', 'search'));
+        $categories = Category::all();
+        $search = $request->all();
+        return view('admin.index', compact('contacts', 'categories', 'search'));
     }
 
     public function reset()
     {
         return redirect('/admin');
     }
-    public function delete(Request $request)            
+    public function delete(Request $request)
     {
-        Contact::find($request->id)->delete();              
+        Contact::find($request->id)->delete();
         return redirect('/admin');
     }
     public function export(Request $request)
